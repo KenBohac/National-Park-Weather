@@ -15,20 +15,21 @@ namespace WebApplication.Web.DAL
             this.connectionString = connectionString;
         }
 
-        public Weather GetWeather(string parkCode)
+        public IList <Weather>GetWeather(string parkCode)
         {
-            Weather weather = new Weather();
+            IList <Weather> weathers = new List <Weather>();
             try
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
-                    SqlCommand cmd = new SqlCommand("SELECT * FROM weather WHERE parkCode = @parkCode", conn);
+                    SqlCommand cmd = new SqlCommand("SELECT * FROM weather WHERE parkCode = @parkCode;", conn);
                     cmd.Parameters.AddWithValue("@parkCode", parkCode);
                     SqlDataReader reader = cmd.ExecuteReader();
                     while (reader.Read())
                     {
-                        weather = ConvertReaderToWeather(reader);
+                        Weather weather  = ConvertReaderToWeather(reader);
+                        weathers.Add(weather);
                     }
                 }
             }
@@ -36,18 +37,20 @@ namespace WebApplication.Web.DAL
             {
 
             }
-            return weather;
+            return weathers;
         }
 
         private Weather ConvertReaderToWeather(SqlDataReader reader)
         {
             Weather weather = new Weather();
             weather.ParkCode = Convert.ToString(reader["parkCode"]);
-            weather.Day = Convert.ToInt32(reader["day"]);
+            weather.Day = Convert.ToInt32(reader["fiveDayForecastValue"]);
             weather.Low = Convert.ToInt32(reader["low"]);
             weather.High = Convert.ToInt32(reader["high"]);
             weather.Forecast = Convert.ToString(reader["forecast"]);
             return weather;
         }
+
+
     }
 }

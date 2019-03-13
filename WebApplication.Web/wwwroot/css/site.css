@@ -60,3 +60,12 @@ li:last-child {
 .index-description {
     padding: 30px 20px 0px 20px;
 }
+#weather-forecast{
+    display:flex;
+    flex-direction: row;
+
+}
+#weather-forecast img{
+    height: 200px;
+    width:auto;
+}

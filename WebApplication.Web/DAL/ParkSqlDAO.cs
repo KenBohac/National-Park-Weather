@@ -62,7 +62,7 @@ namespace WebApplication.Web.DAL
         
         }
 
-        public Park GetPark()
+        public Park GetPark(string parkCode)
         {
             Park park = new Park();
         try
@@ -70,7 +70,8 @@ namespace WebApplication.Web.DAL
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
-                SqlCommand cmd = new SqlCommand("SELECT * FROM park", conn);
+                SqlCommand cmd = new SqlCommand("SELECT * FROM park WHERE parkCode = @parkCode", conn);
+                    cmd.Parameters.AddWithValue("@parkCode", parkCode);
                 SqlDataReader reader = cmd.ExecuteReader();
 
                 while (reader.Read())
@@ -105,9 +106,8 @@ namespace WebApplication.Web.DAL
             return park;
         }
 
-        //public IList<Weather> GetWeather()
-        //{
-        //    throw new NotImplementedException();
-        //}
+
+
     } 
+
 }
