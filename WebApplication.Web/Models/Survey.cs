@@ -8,7 +8,7 @@ namespace WebApplication.Web.Models
     /// <summary>
     /// Instantiates new instance of a survey.
     /// </summary>
-    public class Survery
+    public class Survey
     {
         /// <summary>
         /// Survery ID
