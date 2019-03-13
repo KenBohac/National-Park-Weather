@@ -10,15 +10,10 @@ namespace WebApplication.Web.Models
     /// </summary>
     public class Weather
     {
-
-        public Weather(string parkCode)
-        {
-            this.ParkCode = parkCode;
-        }
         /// <summary>
         /// The park code.
         /// </summary>
-        public string ParkCode { get; private set; }
+        public string ParkCode { get; set; }
 
         /// <summary>
         /// The day.
