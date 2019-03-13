@@ -16,9 +16,9 @@ namespace WebApplication.Web.Models
 
         public string State { get; set; }
 
-        public double Acreage { get; set; }
+        public int Acreage { get; set; }
 
-        public double Elevation { get; set; }
+        public int Elevation { get; set; }
 
         public double MilesOfTrail { get; set; }
 
@@ -36,7 +36,7 @@ namespace WebApplication.Web.Models
 
         public string Description { get; set; }
 
-        public decimal EntryFee { get; set; }
+        public int EntryFee { get; set; }
 
         public int NumberOfAnimalSpecies { get; set; }
 
