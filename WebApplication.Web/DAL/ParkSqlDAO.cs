@@ -61,14 +61,13 @@ namespace WebApplication.Web.DAL
 
         
         }
-    }
 
         public Park GetPark()
         {
-            Park park = new Park(); 
-            try
-            {
-            using (SqlConnection conn = new SqlConnection("NPGeek"))
+            Park park = new Park();
+        try
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
                 SqlCommand cmd = new SqlCommand("SELECT * FROM park", conn);
@@ -96,12 +95,13 @@ namespace WebApplication.Web.DAL
 
 
                 }
-            } 
-            
-            catch (SqlException ex)
-            {
-                throw;
             }
+        }
+
+        catch (SqlException ex)
+        {
+            throw;
+        }
             return park;
         }
 

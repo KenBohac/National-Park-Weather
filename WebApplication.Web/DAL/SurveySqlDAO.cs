@@ -20,7 +20,7 @@ namespace WebApplication.Web.DAL
             IList<Survey> surveys = new List<Survey>();
             try
             {
-                using (SqlConnection conn = new SqlConnection("NPGeek"))
+                using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
                     SqlCommand cmd = new SqlCommand("SELECT * FROM survey_result;", conn);

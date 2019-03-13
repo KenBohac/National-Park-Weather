@@ -20,7 +20,7 @@ namespace WebApplication.Web.DAL
             Weather weather = new Weather();
             try
             {
-                using (SqlConnection conn = new SqlConnection("NPgeek"))
+                using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
                     SqlCommand cmd = new SqlCommand("SELECT * FROM weather WHERE parkCode = @parkCode", conn);
