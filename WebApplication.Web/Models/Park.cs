@@ -8,6 +8,7 @@ namespace WebApplication.Web.Models
     public class Park
     {
 
+    
         public string ParkCode { get; set; }
 
         public string Name { get; set; }
@@ -24,6 +25,8 @@ namespace WebApplication.Web.Models
 
         public string Climate { get; set; }
 
+        public int YearFounded { get; set; }
+
         public long AnnualVisitorCount { get; set; }
 
         public string Quote { get; set; }
@@ -37,6 +40,7 @@ namespace WebApplication.Web.Models
         public int NumberOfAnimalSpecies { get; set; }
 
         public List<Weather>  {get; set;} 
+
 
     }
 }
