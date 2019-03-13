@@ -105,9 +105,9 @@ namespace WebApplication.Web.DAL
             return park;
         }
 
-        public IList<Weather> GetWeather()
-        {
-            throw new NotImplementedException();
-        }
+        //public IList<Weather> GetWeather()
+        //{
+        //    throw new NotImplementedException();
+        //}
     } 
 }

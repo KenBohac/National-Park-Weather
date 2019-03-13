@@ -1,1 +1,62 @@
-﻿
+﻿img {
+    width: 100%;
+    height: auto;
+}
+
+h1, h2, h3, h4, a {
+    font-family: 'Rubik', sans-serif;
+}
+
+body {
+    margin: 0;
+    font-family: 'Libre Baskerville', serif;
+}
+
+main {
+    width: 90%;
+    margin: 0 auto;
+}
+
+header {
+    width: 100%;
+}
+
+#logo {
+    width:50%;
+    height: auto;
+}
+
+nav {
+
+    display:flex;
+    background-color: orange;
+}
+
+ul {
+    padding-left: 0;
+    display: flex;
+    padding: 10px 20px;
+    justify-content: space-between;
+}
+
+li {
+    list-style: none;
+}
+
+li:last-child {
+    margin-left: 20px;
+}
+
+.park-index {
+    display: flex;
+    justify-content: space-between;
+    margin: 50px 0px;
+}
+
+.index-img, .index-description {
+    width: 50%;
+}
+
+.index-description {
+    padding: 30px 20px 0px 20px;
+}

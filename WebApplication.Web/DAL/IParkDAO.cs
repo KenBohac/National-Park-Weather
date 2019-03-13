@@ -7,11 +7,11 @@ using WebApplication.Web.Models;
 
 namespace WebApplication.Web.DAL
 {
-    interface IParkDAO
+    public interface IParkDAO
     {
         Park GetPark();
         IList<Park> GetAllParks();
-        IList<Weather> GetWeather();
+        //IList<Weather> GetWeather();
 
     }
 }

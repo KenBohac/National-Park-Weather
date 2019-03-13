@@ -40,7 +40,7 @@ namespace WebApplication.Web.Models
 
         public int NumberOfAnimalSpecies { get; set; }
 
-        public List<Weather>  {get; set;} 
+        public List<Weather> Weather  {get; set;} 
 
 
     }

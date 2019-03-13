@@ -1,5 +1,19 @@
-﻿@{
+﻿@model IList<Park>
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<h2>Index</h2>
+
+@foreach (Park park in Model)
+{
+    string parkimg = park.ParkCode.ToLower();
+    <div class="park-index">
+        <div class="index-img">
+            <img src="~/img/parks/@(parkimg).jpg" />
+        </div>
+        <div class="index-description">
+                <h2>@park.Name</h2>
+                <p>@park.Description</p>
+         </div>
+    </div>
+}
