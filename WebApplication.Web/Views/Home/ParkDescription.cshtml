@@ -13,8 +13,13 @@
     </div>
 </div>
     <div>
-        <button class="fahrenheit">Fahrenheit</button>
-        <button class="celsius">Celsius</button>
+        <form method="get" asp-controller="survey" asp-action="parkdescription" asp-route-id="@Model.ParkCode">
+            <label>Choose your Temperature Scale Preference</label>
+            <input type="radio" value="F" name="unit"/>
+            <input type="radio" value="C" name="unit"/>
+            <input type="submit" value="Submit" />
+
+        </form>
         <div id="weather-forecast">
             @foreach (Weather weather in Model.Weather)
             {
