@@ -24,6 +24,30 @@
 
             <h3>High: @weather.High</h3>
             <h3>Low:  @weather.Low </h3>
+            @if (weather.Forecast == "snow")
+            {
+                <p>Pack your snowboots!</p>
+            }
+            @if (weather.Forecast == "rain")
+            {
+                <p>Pack your rain gear! Waterproof shoes highly recommended.</p>
+            }
+            @if (weather.Forecast == "thunderstorms")
+            {
+                <p>Seek shelter. Avoid hiking on exposed ridges!</p>
+            }
+            @if (weather.High > 75)
+            {
+                <p>Bring an extra gallon of water!</p>
+            }
+            @if (weather.High - weather.Low > 20)
+            {
+                <p>Wear breathable layers!</p>
+            }
+            @if (weather.Low < 20)
+            {
+                <p>Be careful of frigid temperatures!</p>
+            }
         </div>
     }
 
