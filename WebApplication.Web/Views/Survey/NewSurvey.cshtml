@@ -1,7 +1,35 @@
-﻿
+﻿@model Survey
 @{
     ViewData["Title"] = "NewSurvey";
 }
 
-<h2>NewSurvey</h2>
+<h2>New Survey</h2>
 
+<section>
+
+    <form method="post" asp-controller="survey" asp-action="newsurvey">
+        <div class="form-control">
+            <label asp-for="ParkCode"></label>
+            <input asp-for="ParkCode" type="text" />
+            <span class="error" asp-validation-for="ParkCode"></span>
+        </div>
+        <div class="form-control">
+            <label asp-for="Email"></label>
+            <input asp-for="Email" type="text" />
+            <span class="error" asp-validation-for="Email"></span>
+        </div>
+        <div class="form-control">
+            <label asp-for="State"></label>
+            <input asp-for="State" type="text" />
+            <span class="error" asp-validation-for="State"></span>
+        </div>
+        <div class="form-control">
+            <label asp-for="ActivityLevel"></label>
+            <input asp-for="ActivityLevel" type="text" />
+            <span class="error" asp-validation-for="ActivityLevel"></span>
+        </div>
+
+        <input type="submit" id="submit-button" value="Submit Survey" />
+    </form>
+
+</section>

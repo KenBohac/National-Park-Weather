@@ -26,6 +26,7 @@ namespace WebApplication.Web.Controllers
         [HttpGet]
         public IActionResult NewSurvey()
         {
+            IList<Survey> surveys = surveyDAO.GetSurveyResults();
             return View();
         }
 
@@ -33,8 +34,17 @@ namespace WebApplication.Web.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult NewSurvey(Survey survey)
         {
-            surveyDAO.SaveSurvey(survey);
-            return RedirectToAction("Index");
+
+            if (ModelState.IsValid)
+            {
+                surveyDAO.SaveSurvey(survey);
+                return RedirectToAction("Index");
+            }
+
+            else
+            {
+                return View(survey);
+            }
         }
     }
 }

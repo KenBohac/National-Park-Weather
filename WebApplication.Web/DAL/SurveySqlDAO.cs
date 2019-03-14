@@ -41,10 +41,10 @@ namespace WebApplication.Web.DAL
 
         public bool SaveSurvey(Survey survey)
         {
-            bool isSaved;
+            bool isSaved = false;
             try
             {
-                using (SqlConnection conn = new SqlConnection("NPGeek"))
+                using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
                     SqlCommand cmd = new SqlCommand("INSERT INTO survey_result (parkCode, emailAddress, state, activityLevel) VALUES (@parkCode, @emailAddress, @state, @activityLevel);", conn);
