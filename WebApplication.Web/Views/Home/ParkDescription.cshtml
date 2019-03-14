@@ -3,52 +3,56 @@
     ViewData["Title"] = "ParkDescription";
 
 }
-
-<h2>Park Description</h2>
-
-<div id="park description">
-    <img src="~/img/parks/@(Model.ParkCode).jpg" />
+<h1 class="park-header">@Model.Name</h1>
+<div id="park-description">
+    <div id="park-img">
+        <img src="~/img/parks/@(Model.ParkCode).jpg" />
+    </div>
+    <div id="park-details">
+        <p>@Model.Description</p>
+    </div>
 </div>
-<div>
-    <h2>@Model.Name</h2>
+    <div>
+        <button class="fahrenheit">Fahrenheit</button>
+        <button class="celsius">Celsius</button>
+        <div id="weather-forecast">
+            @foreach (Weather weather in Model.Weather)
+            {
+                <div class="daily-forecast">
+                    @if (weather.Day == 1)
+                    {
+                        <h2>Today</h2>
+                    }
+                    <img src="~/img/weather/@(weather.Forecast).png" />
 
-    <p>@Model.Description</p>
-</div>
-<div id="weather-title">
-</div>
-<div id="weather-forecast">
-    @foreach (Weather weather in Model.Weather)
-    {
-        <div class="daily-forcast">
-            <img src="~/img/weather/@(weather.Forecast).png" />
+                    <h3 class="temp">High: @weather.High</h3>
+                    <h3 class="temp">Low:  @weather.Low </h3>
+                    @if (weather.Forecast == "snow")
+                    {
+                        <p>Pack your snowboots!</p>
+                    }
+                    @if (weather.Forecast == "rain")
+                    {
+                        <p>Pack your rain gear! Waterproof shoes highly recommended.</p>
+                    }
+                    @if (weather.Forecast == "thunderstorms")
+                    {
+                        <p>Seek shelter. Avoid hiking on exposed ridges!</p>
+                    }
+                    @if (weather.High > 75)
+                    {
+                        <p>Bring an extra gallon of water!</p>
+                    }
+                    @if (weather.High - weather.Low > 20)
+                    {
+                        <p>Wear breathable layers!</p>
+                    }
+                    @if (weather.Low < 20)
+                    {
+                        <p>Be careful of frigid temperatures!</p>
+                    }
+                </div>
+            }
 
-            <h3>High: @weather.High</h3>
-            <h3>Low:  @weather.Low </h3>
-            @if (weather.Forecast == "snow")
-            {
-                <p>Pack your snowboots!</p>
-            }
-            @if (weather.Forecast == "rain")
-            {
-                <p>Pack your rain gear! Waterproof shoes highly recommended.</p>
-            }
-            @if (weather.Forecast == "thunderstorms")
-            {
-                <p>Seek shelter. Avoid hiking on exposed ridges!</p>
-            }
-            @if (weather.High > 75)
-            {
-                <p>Bring an extra gallon of water!</p>
-            }
-            @if (weather.High - weather.Low > 20)
-            {
-                <p>Wear breathable layers!</p>
-            }
-            @if (weather.Low < 20)
-            {
-                <p>Be careful of frigid temperatures!</p>
-            }
         </div>
-    }
-
-</div>
+    </div>

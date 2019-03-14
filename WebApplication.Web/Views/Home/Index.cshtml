@@ -12,8 +12,8 @@
             <img src="~/img/parks/@(parkimg).jpg" />
         </div>
         <div class="index-description">
-                <a asp-controller="home" asp-action="ParkDescription" asp-route-id ="@park.ParkCode" >  
-            <h2>@park.Name</h2></a>
+                <a class="park-link" asp-controller="home" asp-action="ParkDescription" asp-route-id ="@park.ParkCode" >  
+            <h2 class="park-header">@park.Name</h2></a>
                 <p>@park.Description</p>
          </div>
     </div>

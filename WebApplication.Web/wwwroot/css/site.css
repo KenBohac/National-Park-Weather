@@ -10,11 +10,12 @@ h1, h2, h3, h4, a {
 body {
     margin: 0;
     font-family: 'Libre Baskerville', serif;
+    line-height: 1.5;
 }
 
 main {
     width: 90%;
-    margin: 0 auto;
+    margin: 50px auto;
 }
 
 header {
@@ -36,7 +37,7 @@ ul {
     padding-left: 0;
     display: flex;
     padding: 10px 20px;
-    justify-content: space-between;
+    justify-content: flex-start;
 }
 
 li {
@@ -48,24 +49,130 @@ li:last-child {
 }
 
 .park-index {
-    display: flex;
-    justify-content: space-between;
     margin: 50px 0px;
 }
 
-.index-img, .index-description {
-    width: 50%;
-}
-
 .index-description {
-    padding: 30px 20px 0px 20px;
-}
-#weather-forecast{
-    display:flex;
-    flex-direction: row;
 
 }
+
 #weather-forecast img{
     height: 200px;
     width:auto;
+}
+
+.park-header {
+    text-align: center;
+}
+
+.park-link {
+    color: darkgreen;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: darkgreen;
+}
+
+.daily-forecast h2 {
+    text-align:center;
+    color: darkgreen;
+}
+
+.temp {
+    color: darkgreen;
+    text-align: center;
+}
+
+
+
+button {
+    font-family: 'Rubik', sans-serif;
+    padding: 10px 20px;
+    border: none;
+    margin: 0;
+    font-size: 20px;
+}
+
+    button:hover {
+        cursor: pointer;
+    }
+
+.fahrenheit {
+    background-color: darkgreen;
+    color: white;
+}
+
+.celsius {
+    background-color: darkorange;
+    color: white;
+}
+
+@media only screen and (min-width: 768px)
+{
+    #weather-forecast {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .daily-forecast {
+        width: 17%;
+        padding: 10px;
+    }
+
+
+    .park-index, #park-description {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    #park-description {
+        margin: 50px 0px 50px 0px;
+    }
+
+    #park-img {
+        width: 50%;
+        align-self: center;
+    }
+
+    #park-details {
+        width: 50%;
+        align-self: center;
+        margin-left: 20px;
+        padding: 0px 10px 0px 10px;
+    }
+
+    .index-img, .index-description {
+        width: 50%;
+    }
+
+    main {
+        width: 80%;
+    }
+
+    .index-description {
+        margin-left: 20px;
+    }
+
+    .index-img {
+        align-self:center;
+    }
+
+    ul {
+        width: 80%;
+        margin:  20px auto;
+    }
+
+    .nav-link {
+        margin-right: 30px;
+        font-size: 20px;
+    }
+
+    #weather-forecast img {
+        width: 100%;
+        height: auto;
+    }
+
+
 }
