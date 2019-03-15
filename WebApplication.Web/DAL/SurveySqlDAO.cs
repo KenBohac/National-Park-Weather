@@ -75,5 +75,50 @@ namespace WebApplication.Web.DAL
             survey.ActivityLevel = Convert.ToString(reader["activityLevel"]);
             return survey;
         }
+
+        public int GetVoteCount(string parkCode)
+        {
+            int voteCount = 0;
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand("SELECT COUNT(*) FROM survey_result WHERE parkCode=@parkCode;", conn);
+                    cmd.Parameters.AddWithValue("@parkCode", @parkCode);
+                    
+                    cmd.ExecuteNonQuery();
+                    
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw;
+            }
+            return voteCount;
+        }
+        //public string GetParkName(string parkCode)
+        //{
+        //    string parkName = "";
+        //    try
+        //    {
+        //        using (SqlConnection conn = new SqlConnection(connectionString))
+        //        {
+        //            conn.Open();
+        //            SqlCommand cmd = new SqlCommand("INSERT INTO survey_result (parkCode, emailAddress, state, activityLevel) VALUES (@parkCode, @emailAddress, @state, @activityLevel);", conn);
+        //            cmd.Parameters.AddWithValue("@parkCode", @parkCode);
+
+        //            cmd.ExecuteNonQuery();
+
+        //        }
+        //    }
+        //    catch (SqlException ex)
+        //    {
+        //        throw;
+        //    }
+        //    return parkName;
+        //}
     }
+
+
 }

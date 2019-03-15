@@ -3,7 +3,7 @@
     ViewData["Title"] = "NewSurvey";
 }
 
-<h2 id="survey-header">New Survey</h2>
+<h2 id="survey-header">Vote for your favorite park</h2>
 
 <section class="survey-container">
     <div class="survey-img">
@@ -13,16 +13,16 @@
         <div class="form-control">
             <label asp-for="ParkCode">Select a Park:</label>
             <select asp-for="ParkCode">
-                <option></option>
-                <option></option>
-                <option></option>
-                <option></option>
-                <option></option>
-                <option></option>
-                <option></option>
-                <option></option>
-                <option></option>
-                <option></option>
+                <option value="CVNP">Cuyahoga Valley</option>
+                <option value="ENP">Everglades</option>
+                <option value="GCNP">Grand Canyon</option>
+                <option value="GNP">Glacier</option>
+                <option value="GSMNP">Great Smokey Mountains</option>
+                <option value="GTNP">Grand Teton</option>
+                <option value="MRNP">Mount Rainier</option>
+                <option value="RMNP">Rocky Mountain</option>
+                <option value="YNP">Yellowstone</option>
+                <option value="YNP2">Yosemite</option>
             </select>
         </div>
         <span class="error" asp-validation-for="ParkCode"></span>
