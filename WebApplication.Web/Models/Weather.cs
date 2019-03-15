@@ -30,6 +30,9 @@ namespace WebApplication.Web.Models
         /// </summary>
         public int High { get; set; }
 
+        public int DisplayHigh { get; set; }
+
+        public int DisplayLow { get; set; }
         /// <summary>
         /// The weather forecast for the given day at the given park.
         /// </summary>

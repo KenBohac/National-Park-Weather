@@ -1,6 +1,7 @@
 ﻿@model Park
 @{
     ViewData["Title"] = "ParkDescription";
+    string temppref = (string)ViewData["temppref"];
 
 }
 <h1 class="park-header">@Model.Name</h1>
@@ -32,16 +33,33 @@
 </div>
 <p>@Model.Description</p>
 <div>
-    <form method="get" asp-controller="survey" asp-action="parkdescription" asp-route-id="@Model.ParkCode">
-        <label>Choose your Temperature Scale Preference</label>
-        <input type="radio" value="F" name="unit" />
-        <input type="radio" value="C" name="unit" />
-        <input type="submit" value="Submit" />
-
+    <form method="get" asp-controller="home" asp-action="parkdescription" asp-route-id="@Model.ParkCode">
+        <select class="temp" name="temppref">
+            <option>Select a Temperature</option>
+            <option value="f">Fahrenheit</option>
+            <option value="c">Celsius</option>
+        </select>
+        <input class="submit" type="submit" value="Submit" />
     </form>
     <div id="weather-forecast">
         @foreach (Weather weather in Model.Weather)
         {
+            @if (temppref == "c")
+            {
+                for (int i = 0; i < Model.Weather.Count; i++)
+                {
+                    Model.Weather[i].DisplayHigh = (int)((Model.Weather[i].High - 32) * .56);
+                    Model.Weather[i].DisplayLow = (int)((Model.Weather[i].Low - 32) * .56);
+                }
+            }
+            else
+            {
+                for (int i = 0; i < Model.Weather.Count; i++)
+                {
+                    Model.Weather[i].DisplayHigh = Model.Weather[i].High;
+                    Model.Weather[i].DisplayLow = Model.Weather[i].Low;
+                }
+            }
             <div class="daily-forecast">
                 @if (weather.Day == 1)
                 {
@@ -49,8 +67,8 @@
                 }
                 <img src="~/img/weather/@(weather.Forecast).png" />
 
-                <h3 class="temp">High: @weather.High</h3>
-                <h3 class="temp">Low:  @weather.Low </h3>
+                <h3 class="temp">High: @weather.DisplayHigh</h3>
+                <h3 class="temp">Low:  @weather.DisplayLow </h3>
                 @if (weather.Forecast == "snow")
                 {
                     <p>Pack your snowboots!</p>
