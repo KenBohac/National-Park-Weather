@@ -34,6 +34,11 @@ nav {
 }
 
 ul {
+    padding-left:0px;
+    margin: 0;
+}
+
+.nav-ul {
     padding-left: 0;
     display: flex;
     padding: 10px 20px;
@@ -159,7 +164,7 @@ button {
         align-self:center;
     }
 
-    ul {
+    .nav-ul {
         width: 80%;
         margin:  20px auto;
     }

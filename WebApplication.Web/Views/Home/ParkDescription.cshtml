@@ -4,60 +4,79 @@
 
 }
 <h1 class="park-header">@Model.Name</h1>
+<p class="park-header">
+    "@Model.Quote"
+</p>
+<p class="park-header">
+    -- @Model.QuoteSource
+</p>
 <div id="park-description">
+
     <div id="park-img">
         <img src="~/img/parks/@(Model.ParkCode).jpg" />
     </div>
     <div id="park-details">
-        <p>@Model.Description</p>
+        <ul>
+            <li>State: @Model.State</li>
+            <li>Climate: @Model.Climate</li>
+            <li>Number of Animal Species: @Model.NumberOfAnimalSpecies</li>
+            <li>Acreage: @Model.Acreage</li>
+            <li>Elevation: @Model.Elevation Ft.</li>
+            <li>Miles of Trail: @Model.MilesOfTrail miles</li>
+            <li>Number of Campsites: @Model.NumberofCampsites</li>
+            <li>Annual Visitors: @Model.AnnualVisitorCount</li>
+            <li>Founded: @Model.YearFounded</li>
+            <li>Entry Fee: $ @Model.EntryFee</li>
+        </ul>
     </div>
 </div>
-    <div>
-        <form method="get" asp-controller="survey" asp-action="parkdescription" asp-route-id="@Model.ParkCode">
-            <label>Choose your Temperature Scale Preference</label>
-            <input type="radio" value="F" name="unit"/>
-            <input type="radio" value="C" name="unit"/>
-            <input type="submit" value="Submit" />
+<p>@Model.Description</p>
+<div>
+    <form method="get" asp-controller="survey" asp-action="parkdescription" asp-route-id="@Model.ParkCode">
+        <label>Choose your Temperature Scale Preference</label>
+        <input type="radio" value="F" name="unit" />
+        <input type="radio" value="C" name="unit" />
+        <input type="submit" value="Submit" />
 
-        </form>
-        <div id="weather-forecast">
-            @foreach (Weather weather in Model.Weather)
-            {
-                <div class="daily-forecast">
-                    @if (weather.Day == 1)
-                    {
-                        <h2>Today</h2>
-                    }
-                    <img src="~/img/weather/@(weather.Forecast).png" />
+    </form>
+    <div id="weather-forecast">
+        @foreach (Weather weather in Model.Weather)
+        {
+            <div class="daily-forecast">
+                @if (weather.Day == 1)
+                {
+                    <h2>Today</h2>
+                }
+                <img src="~/img/weather/@(weather.Forecast).png" />
 
-                    <h3 class="temp">High: @weather.High</h3>
-                    <h3 class="temp">Low:  @weather.Low </h3>
-                    @if (weather.Forecast == "snow")
-                    {
-                        <p>Pack your snowboots!</p>
-                    }
-                    @if (weather.Forecast == "rain")
-                    {
-                        <p>Pack your rain gear! Waterproof shoes highly recommended.</p>
-                    }
-                    @if (weather.Forecast == "thunderstorms")
-                    {
-                        <p>Seek shelter. Avoid hiking on exposed ridges!</p>
-                    }
-                    @if (weather.High > 75)
-                    {
-                        <p>Bring an extra gallon of water!</p>
-                    }
-                    @if (weather.High - weather.Low > 20)
-                    {
-                        <p>Wear breathable layers!</p>
-                    }
-                    @if (weather.Low < 20)
-                    {
-                        <p>Be careful of frigid temperatures!</p>
-                    }
-                </div>
-            }
+                <h3 class="temp">High: @weather.High</h3>
+                <h3 class="temp">Low:  @weather.Low </h3>
+                @if (weather.Forecast == "snow")
+                {
+                    <p>Pack your snowboots!</p>
+                }
+                @if (weather.Forecast == "rain")
+                {
+                    <p>Pack your rain gear! Waterproof shoes highly recommended.</p>
+                }
+                @if (weather.Forecast == "thunderstorms")
+                {
+                    <p>Seek shelter. Avoid hiking on exposed ridges!</p>
+                }
+                @if (weather.High > 75)
+                {
+                    <p>Bring an extra gallon of water!</p>
+                }
+                @if (weather.High - weather.Low > 20)
+                {
+                    <p>Wear breathable layers!</p>
+                }
+                @if (weather.Low < 20)
+                {
+                    <p>Be careful of frigid temperatures!</p>
+                }
+            </div>
+        }
 
-        </div>
     </div>
+</div>
