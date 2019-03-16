@@ -25,14 +25,13 @@ namespace WebApplication.Web.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            IList<Survey> results = surveyDAO.GetSurveyResults();
+            IList<SurveyResults> results = surveyDAO.Results();
             return View(results);
         }
 
         [HttpGet]
         public IActionResult NewSurvey()
         {
-            IList<Survey> surveys = surveyDAO.GetSurveyResults();
             return View();
         }
 
@@ -55,22 +54,5 @@ namespace WebApplication.Web.Controllers
 
 
         }
-        //[HttpGet]
-        //public IActionResult GetTempScale(string unit, string parkCode)
-        //{
-        //    Park park = parkDAO.GetPark(parkCode);
-        //    park.Weather = weatherDAO.GetWeather(park.ParkCode);
-        //    if (unit == "C")
-        //    {
-        //        for(int i = 0; i < park.Weather.Count; i++)
-        //        {
-        //            park.Weather[i].High = (park.Weather[i].High - 32) * (5 / 9);
-        //            park.Weather[i].Low = (park.Weather[i].Low - 32) * (5 / 9);
-        //        }
-
-
-        //    }
-        //    return RedirectToAction(HomeController )
-        //}
     }
 }

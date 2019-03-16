@@ -1,13 +1,18 @@
-﻿@model  IList<Survey>
+﻿@model  IList<SurveyResults>
 @{
     ViewData["Title"] = "Index";
 }
 
 <h1>Vote Results</h1>
-@foreach (Survey survey in Model)
+@foreach (SurveyResults survey in Model)
 {
-    <h3>@survey.ParkCode</h3>
-    <p>@survey.Email</p>
-    <p>@survey.State</p>
-    <p>@survey.ActivityLevel</p>
+<div class="survey-results">
+    <div class="survey-result-img">
+        <img src="~/img/parks/@(survey.ParkCode).jpg" />
+    </div>
+    <div class="survey-result-content">
+        <h2>@survey.ParkName</h2>
+        <h2>Votes: @survey.VoteCount</h2>
+    </div>
+</div>
 }

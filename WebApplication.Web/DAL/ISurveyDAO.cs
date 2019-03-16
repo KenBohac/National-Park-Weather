@@ -8,7 +8,7 @@ namespace WebApplication.Web.DAL
 {
     public interface ISurveyDAO
     {
-        IList<Survey> GetSurveyResults();
+        IList<SurveyResults> Results();
         bool SaveSurvey(Survey survey);
     }
 }

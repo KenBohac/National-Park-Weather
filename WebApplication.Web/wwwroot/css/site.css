@@ -1,4 +1,7 @@
-﻿img {
+﻿/* Mobile/screens smaller than 768px */
+
+/*Element selectors*/
+img {
     width: 100%;
     height: auto;
 }
@@ -22,20 +25,26 @@ header {
     width: 100%;
 }
 
-#logo {
-    width:50%;
-    height: auto;
+/*Changing position of error message*/
+span {
+    display: block;
+    margin-bottom: 5px;
 }
 
+ul {
+    padding-left:0px;
+    margin: 0;
+}
+
+/*Nav Bar*/
 nav {
 
     display:flex;
     background-color: orange;
 }
 
-ul {
-    padding-left:0px;
-    margin: 0;
+li {
+    list-style: none;
 }
 
 .nav-ul {
@@ -45,22 +54,25 @@ ul {
     justify-content: flex-start;
 }
 
-li {
-    list-style: none;
-}
-
 .nav-ul li:last-child {
     margin-left: 20px;
 }
+
+.nav-link {
+    text-decoration: none;
+    color: darkgreen;
+}
+
+/*Home/Park Description Styles*/
 
 .park-index {
     margin: 50px 0px;
 }
 
-.index-description {
-
+#logo {
+    width:50%;
+    height: auto;
 }
-
 #weather-forecast img{
     height: 200px;
     width:auto;
@@ -70,12 +82,13 @@ li {
     text-align: center;
 }
 
-.park-link {
-    color: darkgreen;
+.daily-forecast {
+    margin: 0 auto;
+    text-align: center;
 }
 
-.nav-link {
-    text-decoration: none;
+
+.park-link {
     color: darkgreen;
 }
 
@@ -87,11 +100,10 @@ li {
 .temp {
     color: darkgreen;
     text-align: center;
+    padding: 10px 20px;
 }
 
-.error {
-    color: red;
-}
+/*Survey Styles*/
 
 .form-control {
     margin-bottom: 10px;
@@ -99,9 +111,16 @@ li {
     flex-direction: column;
 }
 
+.error {
+    color: red;
+}
 
+.survey-img {
+    display: none;
+}
 
-.submit, #submit-button {
+.submit, 
+#submit-button {
     font-family: 'Libre Franklin', sans-serif;
     padding: 10px 20px;
     border: none;
@@ -110,18 +129,11 @@ li {
     color: white;
 }
 
-.form-control input, .form-control select {
+.form-control input, 
+.form-control select {
     padding: 5px;
 }
 
-.survey-img {
-    display: none;
-}
-
-span {
-    display: block;
-    margin-bottom: 5px;
-}
 
 .form-control label {
     margin-right: 30px;
@@ -132,26 +144,23 @@ span {
     margin: 0 auto;
 }
 
-
-
-
-
-.temp {
-    padding: 10px 20px;
-}
-
-    .submit:hover, #submit-button {
+/*Change cursor to pointer on hover for input type submit*/
+    .submit:hover, 
+    #submit-button {
         cursor: pointer;
     }
 
-
+    /*Styles for screens larger than 768px*/
 @media only screen and (min-width: 768px)
 {
+    /*Home/Park Description styles*/
+
     #weather-forecast {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
     }
+
 
     .daily-forecast {
         width: 17%;
@@ -159,7 +168,8 @@ span {
     }
 
 
-    .park-index, #park-description {
+    .park-index, 
+    #park-description {
         display: flex;
         justify-content: space-between;
     }
@@ -182,7 +192,8 @@ span {
         padding: 0px 10px 0px 10px;
     }
 
-    .index-img, .index-description {
+    .index-img, 
+    .index-description {
         width: 50%;
     }
 
@@ -198,6 +209,11 @@ span {
         align-self:center;
     }
 
+    #weather-forecast img {
+        width: 100%;
+        height: auto;
+    }
+    /*Nav Styles*/
     .nav-ul {
         width: 80%;
         margin:  20px auto;
@@ -207,12 +223,7 @@ span {
         margin-right: 30px;
         font-size: 20px;
     }
-
-    #weather-forecast img {
-        width: 100%;
-        height: auto;
-    }
-
+    /*Survey styles*/
 
     .form-control {
         display: flex;
@@ -230,12 +241,31 @@ span {
 
     .survey-img {
         width: 20%;
+        display: block;
     }
 
     #survey {
         width: 80%;
+        align-self:center;
     }
     .survey-container {
         display: flex;
+    }
+
+    .survey-results {
+        display:flex;
+        justify-content: space-between;
+        margin-bottom: 50px;
+    }
+
+    .survey-results-img {
+        width: 50%;
+    }
+
+    .survey-result-content {
+        width: 50%;
+        margin-left: 20px;
+        align-self: center;
+        text-align: right;
     }
 }

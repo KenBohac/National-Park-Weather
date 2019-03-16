@@ -15,28 +15,30 @@ namespace WebApplication.Web.DAL
             this.connectionString = connectionString;
         }
 
-        public IList<Survey> GetSurveyResults()
+        public IList<SurveyResults> Results()
         {
-            IList<Survey> surveys = new List<Survey>();
+            IList<SurveyResults> results = new List<SurveyResults>();
             try
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
-                    SqlCommand cmd = new SqlCommand("SELECT * FROM survey_result;", conn);
-                    SqlDataReader reader = cmd.ExecuteReader();
-                    while (reader.Read())
+                    SqlCommand cmd = new SqlCommand("SELECT survey_result.parkCode, park.parkName, COUNT(survey_result.parkCode) AS favorite FROM survey_result JOIN park ON(park.parkCode = survey_result.parkCode) GROUP BY survey_result.parkCode, park.parkName ORDER by favorite DESC", conn);
+
+                    SqlDataReader reader2 = cmd.ExecuteReader();
+                    while (reader2.Read())
                     {
-                        Survey survey = ConvertReaderToSurvey(reader);
-                        surveys.Add(survey);
+                        SurveyResults survey = ConvertReaderToSurveyResults(reader2);
+                        results.Add(survey);
                     }
+
                 }
             }
             catch (SqlException ex)
             {
                 throw;
             }
-            return surveys;
+            return results;
         }
 
         public bool SaveSurvey(Survey survey)
@@ -76,48 +78,15 @@ namespace WebApplication.Web.DAL
             return survey;
         }
 
-        public int GetVoteCount(string parkCode)
+
+        private SurveyResults ConvertReaderToSurveyResults(SqlDataReader reader2)
         {
-            int voteCount = 0;
-            try
-            {
-                using (SqlConnection conn = new SqlConnection(connectionString))
-                {
-                    conn.Open();
-                    SqlCommand cmd = new SqlCommand("SELECT COUNT(*) FROM survey_result WHERE parkCode=@parkCode;", conn);
-                    cmd.Parameters.AddWithValue("@parkCode", @parkCode);
-                    
-                    cmd.ExecuteNonQuery();
-                    
-                }
-            }
-            catch (SqlException ex)
-            {
-                throw;
-            }
-            return voteCount;
+            SurveyResults survey = new SurveyResults();
+            survey.ParkCode = Convert.ToString(reader2["parkCode"]);
+            survey.ParkName = Convert.ToString(reader2["parkName"]);
+            survey.VoteCount = Convert.ToInt32(reader2["favorite"]);
+            return survey;
         }
-        //public string GetParkName(string parkCode)
-        //{
-        //    string parkName = "";
-        //    try
-        //    {
-        //        using (SqlConnection conn = new SqlConnection(connectionString))
-        //        {
-        //            conn.Open();
-        //            SqlCommand cmd = new SqlCommand("INSERT INTO survey_result (parkCode, emailAddress, state, activityLevel) VALUES (@parkCode, @emailAddress, @state, @activityLevel);", conn);
-        //            cmd.Parameters.AddWithValue("@parkCode", @parkCode);
-
-        //            cmd.ExecuteNonQuery();
-
-        //        }
-        //    }
-        //    catch (SqlException ex)
-        //    {
-        //        throw;
-        //    }
-        //    return parkName;
-        //}
     }
 
 

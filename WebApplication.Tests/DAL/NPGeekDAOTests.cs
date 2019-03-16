@@ -8,73 +8,68 @@ using System.IO;
 
 namespace WebApplication.Tests.DAL
 {
-    class NPGeekDAOTests
+    [TestClass]
+    public class NPGeekDAOTests
     {
+        protected string ConnectionString { get; } = "Server=.\\SQLEXPRESS;Database=NPGeek;Trusted_Connection=True;";
+        /// <summary>
+        /// protected property for each of table to be tested
+        /// new park id, new survey id
+        /// </summary>
 
-        [TestClass]
-        public class WorldDAOTests
+        protected int SurveyId { get; private set; }
+
+
+        /// <summary>
+        /// The transaction for each test.
+        /// </summary>
+        private TransactionScope transaction;
+
+        [TestInitialize]
+        public void Setup()
         {
-            protected string ConnectionString { get; } = "Server=.\\SQLEXPRESS;Database=NPGeek;Trusted_Connection=True;";
+            // Begin the transaction
+            transaction = new TransactionScope();
 
-            /// <summary>
-            /// protected property for each of table to be tested
-            /// new park id, new survey id
-            /// </summary>
-            
-            protected int SurveyId { get; private set; }
+            // Get the SQL Script to run
+            string sql = File.ReadAllText("test.sql");
 
-
-            /// <summary>
-            /// The transaction for each test.
-            /// </summary>
-            private TransactionScope transaction;
-
-            [TestInitialize]
-            public void Setup()
+            // Execute the script
+            using (SqlConnection conn = new SqlConnection(ConnectionString))
             {
-                // Begin the transaction
-                transaction = new TransactionScope();
+                conn.Open();
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                SqlDataReader reader = cmd.ExecuteReader();
 
-                // Get the SQL Script to run
-                string sql = File.ReadAllText("test-script.sql");
-
-                // Execute the script
-                using (SqlConnection conn = new SqlConnection(ConnectionString))
+                // If there is a row to read
+                if (reader.Read())
                 {
-                    conn.Open();
-                    SqlCommand cmd = new SqlCommand(sql, conn);
-                    SqlDataReader reader = cmd.ExecuteReader();
-
-                    // If there is a row to read
-                    if (reader.Read())
-                    {
-                        this.SurveyId= Convert.ToInt32(reader["surveyId"]);
-                    }
+                    this.SurveyId = Convert.ToInt32(reader["surveyId"]);
                 }
-
             }
 
-            [TestCleanup]
-            public void Cleanup()
-            {
-                // Roll back the transaction
-                transaction.Dispose();
-            }
+        }
 
-            /// <summary>
-            /// Gets the row count for a table.
-            /// </summary>
-            /// <param name="table"></param>
-            /// <returns></returns>
-            protected int GetRowCount(string table)
+        [TestCleanup]
+        public void Cleanup()
+        {
+            // Roll back the transaction
+            transaction.Dispose();
+        }
+
+        /// <summary>
+        /// Gets the row count for a table.
+        /// </summary>
+        /// <param name="table"></param>
+        /// <returns></returns>
+        protected int GetRowCount(string table)
+        {
+            using (SqlConnection conn = new SqlConnection(ConnectionString))
             {
-                using (SqlConnection conn = new SqlConnection(ConnectionString))
-                {
-                    conn.Open();
-                    SqlCommand cmd = new SqlCommand($"SELECT COUNT(*) FROM {table}", conn);
-                    int count = Convert.ToInt32(cmd.ExecuteScalar());
-                    return count;
-                }
+                conn.Open();
+                SqlCommand cmd = new SqlCommand($"SELECT COUNT(*) FROM {table}", conn);
+                int count = Convert.ToInt32(cmd.ExecuteScalar());
+                return count;
             }
         }
     }

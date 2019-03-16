@@ -42,5 +42,8 @@ namespace WebApplication.Web.Models
         [Required(ErrorMessage = "* Must provide an activiy level.")]
         [MaxLength(100, ErrorMessage ="Maximum 100 characters, please.")]
         public string ActivityLevel { get; set; }
+
+        public IList<SurveyResults> Results { get; set; }
     }
+
 }

@@ -7,12 +7,13 @@
 
 <section class="survey-container">
     <div class="survey-img">
-        <img src="~/img/backpack.png" class="backpack-img" />
+        <img src="~/img/backpack2.jpg" class="backpack-img" />
     </div>
     <form method="post" asp-controller="survey" asp-action="newsurvey" id="survey">
         <div class="form-control">
             <label asp-for="ParkCode">Select a Park:</label>
             <select asp-for="ParkCode">
+                <option value="">Select Park</option>
                 <option value="CVNP">Cuyahoga Valley</option>
                 <option value="ENP">Everglades</option>
                 <option value="GCNP">Grand Canyon</option>
